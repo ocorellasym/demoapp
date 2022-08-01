@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="product"
+            type="corella.oscar.check24.data.model.Product"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/product_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gray_border"
+        android:layout_margin="8dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="8dp" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image"
+            android:text="@{product.name}"
+            tools:text="Name"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="1dp"
+            android:layout_marginStart="8dp" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/rating"
+            android:text="@{product.description}"
+            tools:text="Description description Description descrip description"
+            android:maxLines="2"
+            android:layout_marginStart="8dp"/>
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/description"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@{`Preis: ` + product.price.value + ` ` + product.price.currency}"
+            tools:text="Preis: 39.99 Eur"
+            android:layout_marginStart="8dp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/name"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="31.12.2015"
+            app:dateFromEpoch="@{product.releaseDate}"
+            android:layout_marginEnd="8dp"/>
+
+        <RatingBar
+            android:id="@+id/rating"
+            app:layout_constraintTop_toTopOf="@id/price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:rating="@{product.rating}"
+            android:progressTint="@color/teal_200"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
